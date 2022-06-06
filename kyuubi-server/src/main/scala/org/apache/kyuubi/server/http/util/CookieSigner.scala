@@ -72,15 +72,18 @@ class CookieSigner(secret: Array[Byte]) extends Logging {
    * @param str Input token
    * @return Signed String
    */
-  private def getSignature(str: String) = try {
-    val md = MessageDigest.getInstance(CookieSigner.SHA_STRING)
-    md.update(str.getBytes)
-    md.update(secretBytes)
-    val digest = md.digest
-    new Base64(0).encodeToString(digest)
-  } catch {
-    case ex: NoSuchAlgorithmException =>
-      throw new RuntimeException("Invalid SHA digest String: " +
-        CookieSigner.SHA_STRING + " " + ex.getMessage, ex)
-  }
+  private def getSignature(str: String) =
+    try {
+      val md = MessageDigest.getInstance(CookieSigner.SHA_STRING)
+      md.update(str.getBytes)
+      md.update(secretBytes)
+      val digest = md.digest
+      new Base64(0).encodeToString(digest)
+    } catch {
+      case ex: NoSuchAlgorithmException =>
+        throw new RuntimeException(
+          "Invalid SHA digest String: " +
+            CookieSigner.SHA_STRING + " " + ex.getMessage,
+          ex)
+    }
 }

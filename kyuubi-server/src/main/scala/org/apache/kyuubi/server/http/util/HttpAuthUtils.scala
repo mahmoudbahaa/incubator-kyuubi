@@ -80,7 +80,7 @@ object HttpAuthUtils {
   private def splitCookieToken(tokenStr: String): util.Map[String, String] = {
     val map = new util.HashMap[String, String]
     val st = new StringTokenizer(tokenStr, COOKIE_ATTR_SEPARATOR)
-    while ( {
+    while ({
       st.hasMoreTokens
     }) {
       val part = st.nextToken

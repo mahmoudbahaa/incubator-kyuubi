@@ -353,7 +353,7 @@ class ThriftHttpServlet(
 //        throw new AuthenticationException(e)
 //    }
     // TODO: FIXME: support tokenAuth in Kerberos
-    throw new AuthenticationException("Token Auth is no supported")
+    throw new AuthenticationException("Token Auth is not supported")
   }
 
   /**
@@ -368,8 +368,7 @@ class ThriftHttpServlet(
    * @throws AuthenticationException
    */
   @throws[AuthenticationException]
-  private def doKerberosAuth(request: HttpServletRequest,
-                             response: HttpServletResponse): String = {
+  private def doKerberosAuth(request: HttpServletRequest, response: HttpServletResponse): String = {
     kerberosAuthHandler.authenticate(request, response)
   }
 
